@@ -23,7 +23,7 @@ namespace TongFang
         private static HidDevice _device;
         private static HidStream _deviceStream;
         private static readonly Color[] _colors = new Color[126];
-        private static Dictionary<Key, byte> _layout;
+        private static Dictionary<Key, byte[]> _layout;
         private static bool _dirty = true;
         #endregion
 
@@ -114,15 +114,14 @@ namespace TongFang
         {
             if (_layout.TryGetValue(k, out var idx))
             {
-                if(_colors[idx] != clr)
+                foreach(var i in idx)
                 {
-                    _colors[idx] = clr;
-                    _dirty = true;
+                    if(_colors[i] != clr)
+                    {
+                        _colors[i] = clr;
+                        _dirty = true;
+                    }
                 }
-            }
-            else
-            {
-                _colors[idx] = Color.Black;
             }
         }
 
