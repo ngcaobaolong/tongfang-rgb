@@ -112,13 +112,13 @@ namespace TongFang
         /// <param name="clr">color to set the key to</param>
         public static void SetKeyColor(Key k, Color clr)
         {
-            if (_layout.TryGetValue(k, out var idx))
+            if (_layout.TryGetValue(k, out var indexes))
             {
-                foreach(var i in idx)
+                for (byte idx = 0; idx < indexes.Length; idx++)
                 {
-                    if(_colors[i] != clr)
+                    if (_colors[indexes[idx]] != clr)
                     {
-                        _colors[i] = clr;
+                        _colors[indexes[idx]] = clr;
                         _dirty = true;
                     }
                 }
