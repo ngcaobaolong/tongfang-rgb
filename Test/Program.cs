@@ -11,14 +11,19 @@ namespace Test
         {
             if (!Keyboard.Initialize())
             {
-                Keyboard.SetColorFull(Color.Blue);
-                Keyboard.Update();
                 string[,] yesno = new string[7, 21];
-                for(byte i = 0; i < 7; i++)
+                Keyboard.SetColorFull(Color.Black);
+                Keyboard.Update();
+                Console.WriteLine("Starting mapping test program.");
+                Console.WriteLine("   -Type y if the led lights up directly under a keycap");
+                Console.WriteLine("   -Type n if the led lights up between two keycaps");
+                Console.WriteLine("   -Type b if the no led lights up at all");
+
+                for (byte i = 0; i < 7; i++)
                 {
                     for (byte j = 0; j < 21; j++)
                     {
-                        Keyboard.SetKeyWithCoords(i, j, Color.Purple);
+                        Keyboard.SetKeyWithCoords(i, j, Color.Red);
                         Keyboard.Update();
                         Console.Write($"Did row {i} and column {j} change color?: ");
                         yesno[i,j] = Console.ReadLine();
@@ -29,10 +34,15 @@ namespace Test
                 {
                     for (byte j = 0; j < yesno.GetLength(1); j++)
                     {
-                        lines[i]+= ","+ yesno[i,j];
+                        if (j != 0)
+                            lines[i] += ",";
+
+                        lines[i]+= yesno[i,j];
                     }
                 }
+                Console.WriteLine("Writing text file");
                 System.IO.File.WriteAllLines("mapping.txt", lines);
+                Console.ReadLine();
             }
             else
             {
@@ -41,7 +51,6 @@ namespace Test
             Keyboard.SetColorFull(Color.Blue);
             Keyboard.Update();
             Keyboard.Disconnect();
-            Console.Read();
         }
 
         public static Color ChangeHue(Color color, double offset)
