@@ -9,7 +9,7 @@ namespace Test
     {
         public static void Main()
         {
-            if (Keyboard.Initialize())
+            if (!Keyboard.Initialize())
             {
                 Keyboard.SetColorFull(Color.Blue);
                 Keyboard.Update();
@@ -20,7 +20,7 @@ namespace Test
                     {
                         Keyboard.SetKeyWithCoords(i, j, Color.Purple);
                         Keyboard.Update();
-                        Console.WriteLine($"Set row {i} and column {j}");
+                        Console.Write($"Did row {i} and column {j} change color?: ");
                         yesno[i,j] = Console.ReadLine();
                     }
                 }
