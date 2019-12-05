@@ -9,9 +9,9 @@ namespace Test
     {
         public static void Main()
         {
-            if (!Keyboard.Initialize())
+            if (Keyboard.Initialize())
             {
-                string[,] yesno = new string[7, 21];
+                string[,] yesno = new string[6, 21];
                 Keyboard.SetColorFull(Color.Black);
                 Keyboard.Update();
                 Console.WriteLine("Starting mapping test program.");
@@ -19,25 +19,25 @@ namespace Test
                 Console.WriteLine("   -Type n if the led lights up between two keycaps");
                 Console.WriteLine("   -Type b if the no led lights up at all");
 
-                for (byte i = 0; i < 7; i++)
+                for (byte i = 0; i < yesno.GetLength(0) ; i++)
                 {
-                    for (byte j = 0; j < 21; j++)
+                    for (byte j = 0; j < yesno.GetLength(1); j++)
                     {
                         Keyboard.SetKeyWithCoords(i, j, Color.Red);
                         Keyboard.Update();
                         Console.Write($"Did row {i} and column {j} change color?: ");
-                        yesno[i,j] = Console.ReadLine();
+                        yesno[i, j] = Console.ReadLine();
                     }
                 }
-                string[] lines = new string[7];
+                string[] lines = new string[6];
                 for (byte i = 0; i < yesno.GetLength(0); i++)
                 {
                     for (byte j = 0; j < yesno.GetLength(1); j++)
                     {
                         if (j != 0)
-                            lines[i] += ",";
+                            lines[5-i] += ",";
 
-                        lines[i]+= yesno[i,j];
+                        lines[5-i]+= yesno[i,j];
                     }
                 }
                 Console.WriteLine("Writing text file");

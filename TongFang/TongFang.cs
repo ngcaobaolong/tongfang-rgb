@@ -131,7 +131,11 @@ namespace TongFang
                 throw new ArgumentOutOfRangeException();
 
             int colorIndex = col + ((5 - row) * 21);
-            _colors[colorIndex] = clr;
+            if (_colors[colorIndex] != clr)
+            {
+                _colors[colorIndex] = clr;
+                _dirty = true;
+            }
         }
 
         /// <summary>
