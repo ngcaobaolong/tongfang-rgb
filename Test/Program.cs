@@ -11,20 +11,35 @@ namespace Test
         {
             if (Keyboard.Initialize())
             {
-                var color = Color.Red;
-                Console.WriteLine("Initialized successfully!!");
-                for(int i = 0; i<1000; i++)
+                Keyboard.SetColorFull(Color.Blue);
+                Keyboard.Update();
+                string[,] yesno = new string[7, 21];
+                for(byte i = 0; i < 7; i++)
                 {
-                    color = ChangeHue(color, 4f);
-                    Keyboard.SetColorFull(color);
-                    Keyboard.Update();
-                    Thread.Sleep(10);
+                    for (byte j = 0; j < 21; j++)
+                    {
+                        Keyboard.SetKeyWithCoords(i, j, Color.Purple);
+                        Keyboard.Update();
+                        Console.WriteLine($"Set row {i} and column {j}");
+                        yesno[i,j] = Console.ReadLine();
+                    }
                 }
+                string[] lines = new string[7];
+                for (byte i = 0; i < yesno.GetLength(0); i++)
+                {
+                    for (byte j = 0; j < yesno.GetLength(1); j++)
+                    {
+                        lines[i]+= ","+ yesno[i,j];
+                    }
+                }
+                System.IO.File.WriteAllLines("mapping.txt", lines);
             }
             else
             {
                 Console.WriteLine("Could not initialize device!!");
             }
+            Keyboard.SetColorFull(Color.Blue);
+            Keyboard.Update();
             Keyboard.Disconnect();
             Console.Read();
         }

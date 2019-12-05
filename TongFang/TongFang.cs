@@ -125,6 +125,15 @@ namespace TongFang
             }
         }
 
+        public static void SetKeyWithCoords(byte row, byte col, Color clr)
+        {
+            if (row > ROWS || col > COLUMNS)
+                throw new ArgumentOutOfRangeException();
+
+            int colorIndex = col + ((5 - row) * 21);
+            _colors[colorIndex] = clr;
+        }
+
         /// <summary>
         /// Sets every key to the same color
         /// </summary>
