@@ -37,7 +37,7 @@ namespace TongFang
         /// <param name="brightness">Brightness value, between 0 and 100. Defaults to 50.</param>
         /// <param name="layout">ISO or ANSI. Defaults to ANSI</param>
         /// <returns>Returns true if successful.</returns>
-        public static bool Initialize(int brightness = 50, Layout lyt = Layout.ANSI)
+        public static bool Initialize(int brightness = 50, Layout lyt = Layout.ANSI17)
         {
             var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID);
 
@@ -50,7 +50,7 @@ namespace TongFang
 
                 if (_device?.TryOpen(out _deviceStream) ?? false)
                 {
-                    _layout = lyt == Layout.ANSI ? Layouts.ANSI : Layouts.ISO;
+                    _layout = GetLayout(lyt);
                     SetEffectType(Control.Default, Effect.UserMode, 0, (byte)(brightness / 2), 0, 0, 0);
                     return IsConnected = true;
                 }
@@ -116,11 +116,7 @@ namespace TongFang
             {
                 for (byte idx = 0; idx < indexes.Length; idx++)
                 {
-                    if (_colors[indexes[idx]] != clr)
-                    {
-                        _colors[indexes[idx]] = clr;
-                        _dirty = true;
-                    }
+                    SetColor(indexes[idx], clr);
                 }
             }
         }
@@ -131,11 +127,7 @@ namespace TongFang
                 throw new ArgumentOutOfRangeException();
 
             int colorIndex = col + ((5 - row) * 21);
-            if (_colors[colorIndex] != clr)
-            {
-                _colors[colorIndex] = clr;
-                _dirty = true;
-            }
+            SetColor(colorIndex, clr);
         }
 
         /// <summary>
@@ -145,10 +137,7 @@ namespace TongFang
         public static void SetColorFull(Color clr)
         {
             for (int i = 0; i < _colors.Length; i++)
-            {
-                _colors.SetValue(clr, i);
-                _dirty = true;
-            }
+                SetColor(i, clr);
         }
 
         /// <summary>
@@ -237,6 +226,32 @@ namespace TongFang
             }
 
             return null;
+        }
+
+        private static Dictionary<Key, byte[]> GetLayout(Layout lyt)
+        {
+            switch (lyt)
+            {
+                case Layout.ISO15:
+                    return null;
+                case Layout.ISO17:
+                    return Layouts.ISO17;
+                case Layout.ANSI15:
+                    return Layouts.ANSI15;
+                case Layout.ANSI17:
+                    return null;
+                default:
+                    return Layouts.ANSI15;
+            }
+        }
+
+        private static void SetColor(int idx, Color clr)
+        {
+            if (_colors[idx] != clr)
+            {
+                _colors[idx] = clr;
+                _dirty = true;
+            }
         }
         #endregion
     }
