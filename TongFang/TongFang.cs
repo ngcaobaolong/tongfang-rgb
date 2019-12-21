@@ -233,13 +233,13 @@ namespace TongFang
             switch (lyt)
             {
                 case Layout.ISO15:
-                    return null;
+                    return Layouts.ISO17;//TODO
                 case Layout.ISO17:
                     return Layouts.ISO17;
                 case Layout.ANSI15:
                     return Layouts.ANSI15;
                 case Layout.ANSI17:
-                    return null;
+                    return Layouts.ANSI15;//TODO
                 default:
                     return Layouts.ANSI15;
             }
