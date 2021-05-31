@@ -1,0 +1,9 @@
+D:\Downloads\TongFang\bin\Debug\netstandard2.1\TongFang.deps.json
+D:\Downloads\TongFang\bin\Debug\netstandard2.1\TongFang.dll
+D:\Downloads\TongFang\bin\Debug\netstandard2.1\TongFang.pdb
+D:\Downloads\TongFang\obj\Debug\netstandard2.1\TongFang.csprojAssemblyReference.cache
+D:\Downloads\TongFang\obj\Debug\netstandard2.1\TongFang.AssemblyInfoInputs.cache
+D:\Downloads\TongFang\obj\Debug\netstandard2.1\TongFang.AssemblyInfo.cs
+D:\Downloads\TongFang\obj\Debug\netstandard2.1\TongFang.csproj.CoreCompileInputs.cache
+D:\Downloads\TongFang\obj\Debug\netstandard2.1\TongFang.dll
+D:\Downloads\TongFang\obj\Debug\netstandard2.1\TongFang.pdb

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "0Hv4Aa/HTm6LvlHjfUdCJv7Z8vyFNYgJ8aQB0SZWz1ItsBrkBNbFadB4rvWlpEQYNVkPdUbdgRrSvUaA6Ikpig==",
+  "success": true,
+  "projectFilePath": "D:\\Downloads\\TongFang\\TongFang.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ngcaobaolong\\.nuget\\packages\\hidsharp\\2.1.0\\hidsharp.2.1.0.nupkg.sha512",
+    "C:\\Users\\ngcaobaolong\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
+    "C:\\Users\\ngcaobaolong\\.nuget\\packages\\system.management\\5.0.0\\system.management.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

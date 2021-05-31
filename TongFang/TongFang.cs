@@ -38,7 +38,7 @@ namespace TongFang
         /// <param name="brightness">Brightness value, between 0 and 100. Defaults to 50.</param>
         /// <param name="layout">ISO or ANSI. Defaults to ANSI</param>
         /// <returns>Returns true if successful.</returns>
-        public static bool Initialize(int brightness = 50, Layout lyt = Layout.ANSI)
+        public static bool Initialize(int brightness = 100, Layout lyt = Layout.ANSI)
         {
             var devices = DeviceList.Local.GetHidDevices(VID).Where(d => d.ProductID == PID);
 
